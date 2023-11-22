@@ -3,12 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - Path
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Path
   - Water
   - UI
   - 
@@ -43,4 +45,7 @@ TagManager:
     locked: 0
   - name: Front
     uniqueID: 2172361693
+    locked: 0
+  - name: UI
+    uniqueID: 2478782381
     locked: 0
