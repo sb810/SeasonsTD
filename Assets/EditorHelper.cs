@@ -10,8 +10,8 @@ public class EditorHelper : MonoBehaviour
     static void SliceSprites()
     {
         // Change the below for the with and height dimensions of each sprite within the spritesheets
-        int sliceWidth = 96;
-        int sliceHeight = 64;
+        int sliceWidth = 48;
+        int sliceHeight = 48;
 
         // Change the below for the path to the folder containing the sprite sheets (warning: not tested on folders containing anything other than just spritesheets!)
         // Ensure the folder is within 'Assets/Resources/' (the below example folder's full path within the project is 'Assets/Resources/ToSlice')

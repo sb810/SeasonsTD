@@ -2,6 +2,7 @@ using UnityEngine;
 // Note this line, if it is left out, the script won't know that the class 'Path' exists and it will throw compiler errors
 // This line should always be present at the top of scripts which use pathfinding
 using Pathfinding;
+using UnityEngine.U2D.Animation;
 
 [HelpURL("https://arongranberg.com/astar/documentation/stable/class_partial1_1_1_astar_a_i.php")]
 public class AStarPathfinder : MonoBehaviour {
@@ -18,10 +19,10 @@ public class AStarPathfinder : MonoBehaviour {
     private int currentWaypoint = 0;
 
     private bool reachedEndOfPath;
-    
-    private Animator[] animators;
-    private SpriteRenderer[] spriteRenderers;
-    private static readonly int SpeedMultiplierAnimHash = Animator.StringToHash("SpeedMultiplier");
+
+    public Vector3 currentVelocity;
+
+    private bool active = true;
 
     public void Start () {
         seeker = GetComponent<Seeker>();
@@ -29,8 +30,11 @@ public class AStarPathfinder : MonoBehaviour {
         // Start a new path to the targetPosition, call the the OnPathComplete function
         // when the path has been calculated (which may take a few frames depending on the complexity)
         seeker.StartPath(transform.position, targetPosition.position, OnPathComplete);
-        animators = GetComponentsInChildren<Animator>();
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+    }
+
+    public void SetActive(bool active)
+    {
+        this.active = active;
     }
 
     public void StartPath()
@@ -49,7 +53,7 @@ public class AStarPathfinder : MonoBehaviour {
     }
 
     public void Update () {
-        if (path == null) {
+        if (path == null || !active) {
             // We have no path to follow yet, so don't do anything
             return;
         }
@@ -87,18 +91,9 @@ public class AStarPathfinder : MonoBehaviour {
         // Normalize it so that it has a length of 1 world unit
         Vector3 dir = (path.vectorPath[currentWaypoint] - transform.position).normalized;
         // Multiply the direction by our desired speed to get a velocity
-        Vector3 velocity = dir * speed * speedFactor;
+        currentVelocity = dir * speed * speedFactor;
 
         // If you are writing a 2D game you should remove the CharacterController code above and instead move the transform directly by uncommenting the next line
-        transform.position += velocity * Time.deltaTime;
-        
-        foreach (var animator in animators)
-        {
-            animator.SetFloat(SpeedMultiplierAnimHash, velocity.magnitude);
-        }
-
-        if (velocity.x is < 0.1f and > -0.1f) return;
-        foreach (var spriteRenderer in spriteRenderers)
-            spriteRenderer.flipX = velocity.x < 0;
+        transform.position += currentVelocity * Time.deltaTime;
     }
 }

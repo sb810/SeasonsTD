@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
     private Camera cam;
     [SerializeField] private Transform followTarget;
+    [SerializeField] private Button centerCamButton;
     private PixelPerfectCamera ppcam;
     
     private void Awake()
@@ -33,8 +35,9 @@ public class CameraController : MonoBehaviour
     public void UpdatePosition(BaseEventData data)
     {
         followTarget = null;
+        centerCamButton.interactable = true;
         PointerEventData pointerData = (PointerEventData)data;
-       // Vector3 delta = cam.ScreenToViewportPoint(new Vector3(pointerData.delta.x, pointerData.delta.y, 0));
+        // Vector3 delta = cam.ScreenToViewportPoint(new Vector3(pointerData.delta.x, pointerData.delta.y, 0));
         transform.position += new Vector3(-pointerData.delta.x/100, -pointerData.delta.y/100, 0);
 
     }
