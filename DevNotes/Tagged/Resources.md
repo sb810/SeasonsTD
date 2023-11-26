@@ -1,0 +1,6 @@
+---
+aliases:
+  - resource
+tags:
+  - mechanics
+---
