@@ -1,0 +1,48 @@
+[
+  {
+    "color": "255, 214, 0",
+    "char": "&"
+  },
+  {
+    "color": "255, 145, 0",
+    "char": "?"
+  },
+  {
+    "color": "255, 23, 68",
+    "char": "!"
+  },
+  {
+    "color": "124, 77, 255",
+    "char": "~"
+  },
+  {
+    "color": "0, 184, 212",
+    "char": "@"
+  },
+  {
+    "color": "0, 200, 83",
+    "char": "$"
+  },
+  {
+    "color": "158, 158, 158",
+    "char": "%"
+  },
+  {
+    "char": "v",
+    "color": "0, 255, 0",
+    "icon": "lucide-check-square",
+    "custom": true
+  },
+  {
+    "char": "x",
+    "color": "255, 0, 0",
+    "icon": "lucide-x-square",
+    "custom": true
+  },
+  {
+    "char": "u",
+    "color": "255, 255, 0",
+    "icon": "lucide-box-select",
+    "custom": true
+  }
+]
